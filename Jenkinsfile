@@ -10,15 +10,15 @@ stage ('ContinuousBuild')
 }
 stage ('ContinuousDeployment')
 {
- sh 'scp /home/ubuntu/.jenkins/workspace/ScriptPipeline/webapp/target/webapp.war ubuntu@10.3.0.226:/var/lib/tomcat8/webapps/testapp.war'
+ sh 'scp /home/ubuntu/.jenkins/workspace/ScriptedPipeline/webapp/target/webapp.war ubuntu@10.3.0.243:/var/lib/tomcat9/webapps/testapp.war'
 }
 stage ('ContinuousTesting')
 {
     git 'https://github.com/intelliqittrainings/FunctionalTesting.git'
-    sh 'java -jar /home/ubuntu/.jenkins/workspace/ScriptPipeline/testing.jar'
+    sh 'java -jar /home/ubuntu/.jenkins/workspace/ScriptedPipeline/testing.jar'
 }
 stage ('ContinuousDelivery')
 {
-    sh 'scp /home/ubuntu/.jenkins/workspace/ScriptPipeline/webapp/target/webapp.war ubuntu@10.3.0.139:/var/lib/tomcat8/webapps/prodapp.war'
+    sh 'scp /home/ubuntu/.jenkins/workspace/ScriptedPipeline/webapp/target/webapp.war ubuntu@10.3.0.187:/var/lib/tomcat9/webapps/prodapp.war'
 }
 }
